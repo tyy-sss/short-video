@@ -1,22 +1,17 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+// import './assets/main.css'
 
-import axios from "axios";
-import VueAxios from "vue-axios";
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import ElementPlus  from 'element-plus'
+import 'element-plus/dist/index.css'
 
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
-import * as ElIconModules from "@element-plus/icons-vue";
+import App from './App.vue'
+import router from './router'
 
-const app = createApp(App);
-app.use(store).use(router).use(ElementPlus).use(VueAxios, axios).mount("#app");
+const app = createApp(App)
 
-// 统一注册Icon图标
-for (const iconName in ElIconModules) {
-  if (Reflect.has(ElIconModules, iconName)) {
-    const item = ElIconModules[iconName];
-    app.component(iconName, item);
-  }
-}
+app.use(createPinia())
+app.use(router)
+app.use(ElementPlus)
+
+app.mount('#app')
